@@ -1,0 +1,123 @@
+<html>
+<head>
+<style>
+body{
+background:black;
+}
+#x{
+position:relative;
+top:10%;
+left:10%;
+height:50%;
+width:auto;
+min-width:10px;
+border:2px solid black;
+padding:5px;
+background:aquamarine;
+display:inline-block
+}
+</style>
+</head>
+<body>
+<div id="x">
+<input id="input1" type="text">
+<button onclick="hf()">create item</button></br></br></br>
+</div>
+<script>
+let urlString=window.location.href;
+let paramString = urlString.split('?')[1];
+let queryString = new URLSearchParams(paramString);
+var id;var val;
+var d=document.getElementById("x");
+for (let pair of queryString.entries()) 
+{
+ id=pair[0];
+ val=pair[1];
+}
+var k=JSON.parse(localStorage.getItem("todoitem"));
+for(let i=0;i<k.length;i++)
+{
+	if(k[i].id==val)
+	{
+
+		for(let j=0;j<parseInt(k[i].arr.length);j++)
+		{
+			let label=document.createElement("label");
+			let br=document.createElement("br");
+			let input=document.createElement("input");
+			input.type="checkbox";
+			input.onclick=function()
+			{
+			
+				if(event.target.checked)
+				{
+					d.removeChild(event.target.parentElement)
+					let label=document.createElement("label");
+					let li=document.createElement("li");
+					let inp=document.createElement("input");
+					inp.type="checkbox";
+					inp.checked=true;
+					label.htmlFor=val;
+					let p=event.target.parentElement.getAttribute("name");
+					label.setAttribute("name",p);										
+					label.append(inp);
+					label.append(document.createTextNode(p));
+					label.append(br);
+					d.append(label);
+				}
+				
+				
+			}
+			label.htmlFor=val;
+			label.setAttribute("name",(k[i].arr)[j]);
+			
+			label.append(input);
+			label.append(document.createTextNode((k[i].arr)[j]));
+			label.append(br);
+			d.append(label);
+		}
+		break;
+	}
+}
+function hf()
+{
+		var x=document.getElementById("input1").value;
+		var vals=x;
+		var ids=val;
+		
+		if(localStorage.getItem("todoitem")==null)
+		{
+			let m=[{id:ids,arr:[vals]}];
+			localStorage.setItem("todoitem",JSON.stringify(m));
+		}
+		else
+		{
+
+			var flag=0;	
+			for(let i=0;i<k.length;i++)
+			{
+				if(parseInt(k[i].id)==ids)
+				{
+					flag=1;
+					let new_arr=k[i].arr;
+					new_arr.push(vals);
+					k[i].arr=new_arr;
+					localStorage.setItem("todoitem",JSON.stringify(k));
+					break;
+				}
+			}
+			if(flag==0)
+			{
+				
+				let m={id:ids,arr:[vals]};
+				k.push(m);
+				localStorage.setItem("todoitem",JSON.stringify(k));
+			}
+
+		}
+		window.location.reload()
+}
+</script>
+</body>
+
+</html>

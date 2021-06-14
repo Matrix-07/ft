@@ -1,0 +1,108 @@
+<html>
+<head>
+
+<style>
+.box{
+position:relative;
+top:10px;
+height:400px;
+width:200px;
+border:2px solid black;
+margin:4px;
+}
+</style>
+</head>
+<body>
+
+<div id="todos">
+
+</div>
+</body>
+<script>
+function jh()
+{
+var c=["red","blue"];
+localStorage.setItem("my",JSON.stringify(c));
+}
+let a=localStorage.getItem("todo");
+var v=document.getElementById("todos");
+for(let i=0;i<parseInt(a);i++){
+let f=document.createElement("div");
+f.className="box";
+f.id=i;
+f.innerHTML="<input value='' type='text'><button onclick='hf()'>crete</button></br>"
+v.appendChild(f);
+}
+
+var k=JSON.parse(localStorage.getItem("todoitem"));
+for(let i=0;i<k.length;i++){
+let divr=document.getElementById(i.toString());
+let ul=document.createElement("ul");
+ul.id="ul"+i.toString();
+for(let j=0;j<k[i].arr.length;j++){
+
+let inp=document.createElement("input");
+inp.type="checkbox";
+inp.checked=false;
+inp.onclick=function(){
+event.target.parentElement.style.display="none"
+let x=document.getElementById("ul"+i);
+let li=document.createElement("li");
+let inp=document.createElement("input");
+inp.type="checkbox";
+inp.checked=true;
+let p=event.target.parentElement.getAttribute("name");
+li.append(p);
+li.setAttribute("name",p);
+li.append(inp);
+x.append(li)
+}
+let li=document.createElement("li");
+li.append((k[i].arr)[j]);
+li.setAttribute("name",(k[i].arr)[j]);
+li.append(inp);
+ul.append(li)
+}
+
+divr.append(ul);
+}
+function hf()
+{
+var x=event.target.parentElement.getElementsByTagName("input");
+var val=x[0].value;
+var id=event.target.parentElement.id;
+
+if(localStorage.getItem("todoitem")==null)
+{
+let m=[{id:id,arr:[val]}];
+localStorage.setItem("todoitem",JSON.stringify(m));
+}
+else
+{
+
+	var flag=0;	
+	for(let i=0;i<k.length;i++)
+	{
+		if(parseInt(k[i].id)==id)
+		{
+			flag=1;
+			let new_arr=k[i].arr;
+			new_arr.push(val);
+			k[i].arr=new_arr;
+			localStorage.setItem("todoitem",JSON.stringify(k));
+			break;
+		}
+	}
+	if(flag==0)
+	{
+	
+	let m={id:id,arr:[val]};
+	k.push(m);
+	localStorage.setItem("todoitem",JSON.stringify(k));
+	}
+
+}
+}
+</script>
+
+<html>

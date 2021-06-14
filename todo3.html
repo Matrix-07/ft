@@ -1,0 +1,53 @@
+<html>
+<head>
+<style>
+body{
+background:black
+
+}
+#x{
+text-align:center;
+position:relative;
+top:10%;
+left:10%;
+height:50%;
+width:50%;
+border:2px solid black;
+padding:5px;
+background:aquamarine;
+
+
+}</style></head>
+<body>
+<div id="x">
+<a href="todo7.html"><button onclick="g()">create todo</button></a>
+</div>
+
+
+
+
+<script>
+function g(){
+if(localStorage.getItem("todo")==null || localStorage.getItem("todo")==NaN){
+localStorage.setItem("todo",1);
+}
+else{
+let val=localStorage.getItem("todo");
+localStorage.setItem("todo",parseInt(val)+1);
+}
+
+}
+function g1(){
+if(localStorage.getItem("todo1")==null || localStorage.getItem("todo1")==NaN){
+localStorage.setItem("todo1",1);
+}
+else{
+let val=localStorage.getItem("todo1");
+localStorage.setItem("todo1",parseInt(val)+1);
+}
+
+}
+</script>
+</body>
+
+</html>

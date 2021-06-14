@@ -1,0 +1,55 @@
+<html>
+<head>
+<style>
+.fd{
+
+width:250px;
+border:2px solid black;
+margin:4px;
+padding:10px;
+text-align:center;
+font-size:45px;
+
+}
+body{
+background:black;
+}
+#anc{
+position:relative;
+top:10%;
+left:10%;
+min-height:80%;
+width:80%;
+display:flex;
+background:aquamarine;
+margin:10px;
+padding:10px;
+justify-conetnt:space-between;
+flex-wrap:wrap
+}
+</style>
+</head>
+<body>
+
+<div id="anc">
+
+</div>
+<script>
+
+if(parseInt(localStorage.getItem("todo"))){
+let n=parseInt(localStorage.getItem("todo"));
+var div=document.getElementById("anc");
+for(let i=0;i<n;i++){
+let b=document.createElement("div");
+let a=document.createElement("a");
+a.href="todo8.html"+"?id="+i;
+a.innerHTML="view todo page "+i;
+b.append(a);
+b.className="fd";
+div.append(b);
+}
+}
+</script>
+</body>
+
+</html>

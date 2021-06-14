@@ -1,0 +1,42 @@
+<html>
+
+<body>
+<button onclick="hj()">cf</button>
+<button onclick="hfdj()">cfhf</button>
+<button onclick="hf1()">cfh</button>
+<script>
+
+function hj(){
+if(localStorage.getItem("col")==null){
+let col=["red"]
+localStorage.setItem("col",JSON.stringify(col));
+}
+else{
+let col=["red","jhy","jgh"]
+localStorage.setItem("col",JSON.stringify(col));
+alert(localStorage.length);
+}
+}
+function hfdj(){
+
+console.log(localStorage.getItem("fr"));
+}
+function hf1(){
+if(localStorage.getItem("colfr")==null)
+{
+let m=[{id:'gt',arr:['fore','bmw']}];
+localStorage.setItem("colfr",JSON.stringify(m));
+}
+else
+{
+let k=JSON.parse(localStorage.getItem("colfr"));
+let m={id:'hy',arr:['mer','you']};
+k.push(m)
+localStorage.setItem("colfr",JSON.stringify(k));
+console.log(JSON.stringify(k.length))
+}
+}
+</script>
+</body>
+
+</html>
